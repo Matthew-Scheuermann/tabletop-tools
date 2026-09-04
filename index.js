@@ -7,7 +7,18 @@
  */
 function canCastSpell(isSpellPrepared, hasScroll) {
   // TODO
+  if (isSpellPrepared === true) {
+    return true;
+  } else if (hasScroll === true) {
+    return true;
+  } else {
+    return false;
+  }
 }
+console.log(canCastSpell(true, false)); //spell is prepared but no scroll
+console.log(canCastSpell(false, true)); // spell is not prepared, but wizard has scroll
+console.log(canCastSpell(false, false)); //no spell prepared or scroll
+console.log(canCastSpell(true, true)); //spell is prepared and scroll
 
 /**
  * A creature is hidden from an observer if it is actively hiding
@@ -18,7 +29,18 @@ function canCastSpell(isSpellPrepared, hasScroll) {
  */
 function isHidden(hiding, aware) {
   // TODO
+  if (hiding === true) {
+    return true;
+  } else if (aware === false) {
+    return true;
+  } else {
+    return false;
+  }
 }
+console.log(isHidden(true, false)); //creature is hiding, observer is unaware
+console.log(isHidden(false, false)); //creature is not hiding, observer is unaware
+console.log(isHidden(true, true)); //creature is hiding, observer is aware
+console.log(isHidden(false, true)); //creature is not hiding, observer is aware ONLY Instance where the creature is not hidden (false)
 
 /**
  * A strike hits if the attack value is greater than or equal
