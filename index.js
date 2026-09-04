@@ -51,7 +51,15 @@ console.log(isHidden(false, true)); //creature is not hiding, observer is aware 
  */
 function doesStrikeHit(attack, ac) {
   // TODO
+  if (attack >= ac) {
+    return true;
+  } else {
+    return false;
+  }
 }
+console.log(doesStrikeHit(11, 10)); //attack = 11, ac = 10. 11 >= 10 so it hits.
+console.log(doesStrikeHit(5, 10)); //attack = 5, ac =10. 5 < 10 so no hit.
+console.log(doesStrikeHit(50, 50)); //attack = 50, ac = 50. 50 = 50 so hit.
 
 /**
  * A strike is a critical hit if the attack value is at least
