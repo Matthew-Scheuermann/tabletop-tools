@@ -19,3 +19,4 @@ Live serve `index.html` and use the browser console to test your code.
 
 Please submit the link to your public GitHub repository.
 
+hi this is my initial commit
