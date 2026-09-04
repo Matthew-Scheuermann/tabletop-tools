@@ -70,7 +70,15 @@ console.log(doesStrikeHit(50, 50)); //attack = 50, ac = 50. 50 = 50 so hit.
  */
 function doesStrikeCrit(attack, ac) {
   // TODO
+  if (attack >= ac + 10) {
+    return true;
+  } else {
+    return false;
+  }
 }
+console.log(doesStrikeCrit(30, 10)); // should be a critical hit. 30 >= (10+10)
+console.log(doesStrikeCrit(10, 10)); // 10 attack < 10 + 10 ac therefore is not a critical hit
+console.log(doesStrikeCrit(20, 10)); // 20 attack >= 10 + 10 ac therefore is a critical hit (true)
 
 /**
  * A creature can restore hit points (HP) by healing,
