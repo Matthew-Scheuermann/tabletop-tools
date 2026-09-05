@@ -90,7 +90,15 @@ console.log(doesStrikeCrit(20, 10)); // 20 attack >= 10 + 10 ac therefore is a c
  */
 function heal(maxHp, currentHp, healAmount) {
   // TODO
+  if (currentHp + healAmount > maxHp) {
+    return maxHp;
+  } else {
+    return currentHp + healAmount;
+  }
 }
+console.log(heal(100, 90, 20)); // maxHp = 100, currentHp = 90, healAmount = +20 | 90 + 20 > 100, so 100 should be returned according to my function.
+console.log(heal(100, 50, 50)); // 50 + 50 = 100 so our else will return 100.
+console.log(heal(100, 20, 40)); // 20 + 40 = 60, which is less than maxHp so it will return 60.
 
 /**
  * When a character uses a skill they have proficiency in,
@@ -110,7 +118,26 @@ function heal(maxHp, currentHp, healAmount) {
  */
 function getProficiencyBonus(level, rank) {
   // TODO
+  if (rank === "untrained") {
+    return 0;
+  } else if (rank === "trained") {
+    return level + 2;
+  } else if (rank === "expert") {
+    return level + 4;
+  } else if (rank === "master") {
+    return level + 6;
+  } else if (rank === "legendary") {
+    return level + 8;
+  } else {
+    return 0;
+  }
 }
+console.log(getProficiencyBonus(1, "untrained")); // no bonus
+console.log(getProficiencyBonus(1, "trained")); // bonus of +2, so 1 + 2 = 3.
+console.log(getProficiencyBonus(1, "expert")); // bonus of +4, output will be 5.
+console.log(getProficiencyBonus(10, "master")); // bonus of +6, output will be 10 + 6 = 16.
+console.log(getProficiencyBonus(25, "legendary")); // bonus of +8, output will be 25 + 8 = 33.
+console.log(getProficiencyBonus(5, "good")); // should return 0 since good is not a rank.
 
 /**
  * A creature can get a bonus to its armor class (AC) by taking cover.
@@ -124,7 +151,18 @@ function getProficiencyBonus(level, rank) {
  */
 function getCoverBonus(behindObstacle, takingCover) {
   // TODO
+  if (behindObstacle && takingCover) {
+    return 4;
+  } else if (behindObstacle) {
+    return 2;
+  } else {
+    return 0;
+  }
 }
+console.log(getCoverBonus(true, true)); // returns 4
+console.log(getCoverBonus(true, false)); // returns 2
+console.log(getCoverBonus(false, true)); // 0 no obstacle but taking cover
+console.log(getCoverBonus(false, false)); // 0 no obstacle and no taking cover
 
 /**
  * A creature's current hit points (HP) is reduced by taking damage.
