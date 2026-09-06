@@ -178,7 +178,18 @@ console.log(getCoverBonus(false, false)); // 0 no obstacle and no taking cover
  */
 function getRemainingHp(maxHp, currentHp, damage) {
   // TODO
+  if (damage >= 2 * maxHp) {
+    return -1;
+  } else if (currentHp - damage <= 0) {
+    return 0;
+  } else {
+    return currentHp - damage;
+  }
 }
+console.log(getRemainingHp(50, 50, 100)); // -1 (instant)
+console.log(getRemainingHp(50, 25, 10)); // 15 Hp remaining
+console.log(getRemainingHp(50, 30, 40)); // 0
+console.log(getRemainingHp(50, 1, 50)); // 0
 
 /**
  * All creatures can see in bright light.
@@ -190,7 +201,27 @@ function getRemainingHp(maxHp, currentHp, damage) {
  */
 function canSee(light, vision) {
   // TODO
+  if (light === "bright") {
+    return true;
+  } else if (light === "dim") {
+    if (vision === "low-light" || vision === "dark") {
+      return true;
+    } else {
+      return false;
+    }
+  } else if (light === "dark") {
+    if (vision === "dark") {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
+console.log(canSee("bright", "average")); // light is bright, so all can see.
+console.log(canSee("dim", "low-light")); // light is bright so only low-light and dark visions can see.
+console.log(canSee("dark", "dark")); // light is dark so only dark visions can see.
+console.log(canSee("dim", "average"));
+console.log(canSee("dark", "low-light"));
 
 /**
  * A strike deals damage if it hits, unless the strike is a critical hit,
@@ -204,4 +235,14 @@ function canSee(light, vision) {
  */
 function getStrikeDamage(attack, ac, damage) {
   // TODO
+  if (doesStrikeCrit(attack, ac)) {
+    return damage * 2;
+  } else if (doesStrikeHit(attack, ac)) {
+    return damage;
+  } else {
+    return 0;
+  }
 }
+console.log(getStrikeDamage(50, 20, 5)); //attack is greater than ac by 10 or more, so its critical. 5 x 2 = 10 dmg
+console.log(getStrikeDamage(20, 20, 5)); //attack is = ac, so it hits. 5 dmg
+console.log(getStrikeDamage(19, 20, 5)); // attack < ac so not hit or dmg
